@@ -15,3 +15,54 @@ code {
 * {
   box-sizing: border-box;
 }
+header{
+  width: 100%;
+  background-color: rgb(6, 52, 58);
+  overflow: auto;
+  color: whitesmoke;
+  padding: 20px 5% 20px 30%;
+}
+
+h1{
+  margin: 10px 0;
+  display: inline-block;
+}
+section{
+  width:70%;
+  background-color: rgb(22, 62, 65);
+  float: right;
+  color: white;
+}
+section ul{
+  padding-left:18px;
+}
+section li{
+  list-style-type: none;
+  padding:10px;
+  background-color:rgb(6, 52, 58);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+section h3{
+  margin-top:0;
+}
+aside{
+  width:30%;
+  background-color: black;
+  overflow: auto;
+  display: inline-block;
+  color: white;
+}
+aside ul{
+  float: right;
+  margin: 8px 0;
+  padding: 0;
+}
+aside li{
+  list-style-type: none;
+  padding: 10px 26px 10px 16px;
+  cursor: pointer;
+}
+aside li:hover{
+  background-color: grey;
+}

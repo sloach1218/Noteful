@@ -1,35 +1,66 @@
 import React from 'react';
 import dummyStore from './dummy-store';
-import Header from './Header/Header';
-import Folders from './Folders/Folders'
-import List from './List/List'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MainPage from './MainPage';
+import MainSideBar from './MainSideBar';
 
-const test = dummyStore.notes.map((notes) => notes)
-const nextTest = test.map((name) => {
-  
-  return name.name
-})
-//console.log(dummyStore)
-//console.log(dummyStore.notes[0].name)
-//console.log(test)
-//console.log(nextTest)
+
 class App extends React.Component {
   
-  state = {
-    notes: nextTest,
-    folders: []
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      notes: [],
+      folders: []
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      notes: dummyStore.notes,
+      folders: dummyStore.folders
+    });
+  }
+
+
+
   
   render(){
+    const {notes, folders } = this.state;
     return (
-      <main className='App'>
-        <Header />
-        <Folders />
-        <List />
-        
-        {/*<ul>{this.state.notes.map((note) => <li key={note}>{note}</li>)}</ul>*/}
+      <Router>
+        <main className='App'>
+          <header>
+            <h1>Noteful</h1>
+          </header>
+          <aside>
+            <Route path="/" render={(routeProps) =>
+              <MainSideBar
+                folders={folders}
+                {...routeProps}
+              />} 
+            />
+  
+          </aside>
+          <section>
+            <Route path="/" render={(routeProps) =>
+              <MainPage
+                notes={notes}
+                {...routeProps}
+              />}/>
+          </section>
 
-      </main>
+
+
+          {/*Main route - renders all folders and notes*/}
+          
+         
+
+          {/*renders specific note details and folder w/back button*/}
+          {/*<ul>{this.state.notes.map((note) => <li key={note}>{note}</li>)}</ul>*/}
+
+        </main>
+      </Router>
       
     );
   }

@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: rgb(0, 26, 31);
 }
 
 code {
@@ -19,10 +19,9 @@ header{
   width: 100%;
   background-color: rgb(6, 52, 58);
   overflow: auto;
-  color: whitesmoke;
   padding: 20px 5% 20px 30%;
 }
-
+header a{text-decoration: none; color:whitesmoke;}
 h1{
   margin: 10px 0;
   display: inline-block;
@@ -32,6 +31,8 @@ section{
   background-color: rgb(22, 62, 65);
   float: right;
   color: white;
+  height: calc(100vh - 103px);
+  overflow: auto;
 }
 section ul{
   padding-left:18px;
@@ -42,13 +43,21 @@ section li{
   background-color:rgb(6, 52, 58);
   margin-bottom: 10px;
   cursor: pointer;
+  position: relative;
+  margin-right: 20px;
+}
+section li:hover{
+  background-color: rgb(0, 26, 31);
 }
 section h3{
   margin-top:0;
 }
+section button{
+  cursor: pointer;
+}
 aside{
   width:30%;
-  background-color: black;
+  background-color: rgb(0, 26, 31);
   overflow: auto;
   display: inline-block;
   color: white;
@@ -60,9 +69,33 @@ aside ul{
 }
 aside li{
   list-style-type: none;
-  padding: 10px 26px 10px 16px;
-  cursor: pointer;
+  margin-bottom: 5px;
 }
-aside li:hover{
-  background-color: grey;
+
+.folderLink{
+  color:white;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px 26px 10px 16px;
+  background-color: rgb(22, 62, 65);
+  display: block;
+}
+.folderLink:hover{
+  background-color: rgb(6, 52, 58);
+}
+.folderLink.active {
+  background-color:black;
+}
+ .addbtn{
+  background-color: transparent;
+  color: white;
+  border:none;
+  cursor: pointer;
+  padding: 0;
+  font-size:15px;
+}
+.deletebtn{
+  position: absolute;
+  top: 10px;
+  right:10px;
 }

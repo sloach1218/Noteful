@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import MainSideBar from './MainSideBar';
 import NoteSideBar from './NoteSideBar';
+import NoteDetails from './NoteDetails';
 
 
 class App extends React.Component {
@@ -14,7 +15,8 @@ class App extends React.Component {
       notes: [],
       folders: []
     };
-
+    this.updateNotesBasedOnFolder = this.updateNotesBasedOnFolder.bind(this);
+    this.getNote = this.getNote.bind(this);
   }
 
   componentDidMount() {
@@ -22,12 +24,22 @@ class App extends React.Component {
       notes: dummyStore.notes,
       folders: dummyStore.folders
     });
-    this.updateNotesBasedOnFolder = this.updateNotesBasedOnFolder.bind(this);
+    
   }
 
   updateNotesBasedOnFolder(notes, folderId){
       const newnotes = notes.filter(note => note.folderId === folderId)
       return newnotes;
+  }
+
+  getNote(notes, noteId){
+    const theNote = notes.find(note => note.id === noteId)
+    return theNote;
+  }
+  getFolder(notes, folders, noteId){
+    const theNote = notes.find(notes => notes.id === noteId)
+    const theFolder = folders.find(folder => folder.id === theNote.folderId)
+    return theFolder;
   }
 
   
@@ -53,11 +65,16 @@ class App extends React.Component {
                   {...routeProps}
                 />} 
               />
-              <Route path="/note/:noteId" render={(routeProps) =>
-                <NoteSideBar
-                  folders={folders}
+              <Route path="/note/:noteId" render={(routeProps) =>{
+                const getFolder = this.getFolder(notes, folders, routeProps.match.params.noteId)
+                return(
+                  <NoteSideBar
+                  folder={getFolder}
                   {...routeProps}
-                />} 
+                />
+                )
+              }
+                } 
               />
           </aside>
           <section>
@@ -77,6 +94,20 @@ class App extends React.Component {
                     {...routeProps}
                   />
                   )} }
+              />
+              <Route 
+                path="/note/:noteId"
+                render={(routeProps) => {
+                  
+                  const note = this.getNote(this.state.notes, routeProps.match.params.noteId);
+                  return(
+                    <NoteDetails
+                    note={note}
+                    {...routeProps}
+                  /> 
+                  )}
+                }
+                  
               />
           </section>
 

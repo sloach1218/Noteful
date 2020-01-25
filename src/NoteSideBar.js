@@ -1,17 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NotesContext from './NotesContext'
+import { getFolder } from './noteHelpers'
 
 
 class NoteSideBar extends React.Component {
-
-  
+  constructor(props){
+    super(props);
+    this.goBack = this.goBack.bind(this); 
+ }
+ 
+ goBack(){
+     this.props.history.goBack();
+ }
+static contextType = NotesContext;
   render(){
-    
+    const { notes=[]} = this.context;
+    const { folders=[]} = this.context;
+    const folder = getFolder(notes, folders, this.props.match.params.noteId)
     return (
       <ul className="detailsSideBar">
-        <li>{this.props.folder.name}</li>
-        <li><NavLink to={`/`}> Go Back</NavLink></li>
+        <li>{folder.name}</li>
+        <li><button onClick={this.goBack}> Go Back</button></li>
       </ul>
         
          

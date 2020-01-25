@@ -1,18 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import NotesContext from './NotesContext'
+import { updateNotesBasedOnFolder } from './noteHelpers'
 
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 class MainPage extends React.Component {
 
-  
+  static contextType = NotesContext;
   render(){
-    
+    const { notes=[] } = this.context;
+    const newNotes = updateNotesBasedOnFolder(notes, this.props.match.params.folderName)
     return (
         
             <ul>
-                 {this.props.notes.map(note => {
+                 {newNotes.map(note => {
                      return(
                         <li>
                           <NavLink to={`/note/${note.id}`}>

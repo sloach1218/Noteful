@@ -18,10 +18,18 @@ class App extends React.Component {
   
 
   componentDidMount() {
-    this.setState({
-      notes: dummyStore.notes,
-      folders: dummyStore.folders
-    });
+    fetch('http://localhost:9090/folders')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({folders:data});
+      });
+      fetch('http://localhost:9090/notes')
+      .then(notesresponse => notesresponse.json())
+      .then(notesdata => {
+        this.setState({notes:notesdata});
+      });
+    
+    
     
   }
 
@@ -41,20 +49,16 @@ class App extends React.Component {
             <h1><Link to="/">Noteful</Link></h1>
           </header>
           <NotesContext.Provider value={contextValue}>
-          <aside>
-              
-                <Route exact path="/" component={MainSideBar}/> 
-                <Route path="/folder/:folderName" component={MainSideBar} />
-                <Route path="/note/:noteId" component={NoteSideBar} />
-              
-          </aside>
-          <section>
-            <Route exact path="/" component={MainPage}/>
-              <Route 
-                path="/folder/:folderName"  component={MainPage} />
-              <Route 
-                path="/note/:noteId"  component={NoteDetails}/>
-          </section>
+            <aside>
+              <Route exact path="/" component={MainSideBar}/> 
+              <Route path="/folder/:folderName" component={MainSideBar} />
+              <Route path="/note/:noteId" component={NoteSideBar} />
+            </aside>
+            <section>
+              <Route exact path="/" component={MainPage}/>
+              <Route path="/folder/:folderName" component={MainPage} />
+              <Route path="/note/:noteId" component={NoteDetails}/>
+            </section>
           </NotesContext.Provider>
 
         </main>

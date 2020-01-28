@@ -9,19 +9,49 @@ import { updateNotesBasedOnFolder } from './noteHelpers'
 class MainPage extends React.Component {
 
   static contextType = NotesContext;
+  
+  handleClickDelete = e => {
+    e.preventDefault()
+    const noteId = e.target.getAttribute('note')
+    
+
+    fetch(`http://localhost:9090/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(() => {
+        window.location.href = '/';
+        this.context.deleteNote(noteId)
+        // allow parent to perform extra behaviour
+        //this.props.onDeleteNote(noteId)
+      })
+      .catch(error => {
+        console.error({ error })
+      })
+  }
+
   render(){
     const { notes=[] } = this.context;
+    
     const newNotes = updateNotesBasedOnFolder(notes, this.props.match.params.folderName)
+    
     return (
         
             <ul>
                  {newNotes.map(note => {
                      return(
-                        <li>
+                        <li key={note.id}>
                           <NavLink to={`/note/${note.id}`}>
                             <h3>{note.name}</h3>
                             <p>Modified: {note.modified.slice(0,10)}</p>
-                            <button type="button" className="deletebtn">Delete Note</button>
+                            <button type="button" className="deletebtn" onClick={this.handleClickDelete} note={note.id}>Delete Note</button>
                           </NavLink>
                             
                         </li>

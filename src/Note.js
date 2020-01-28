@@ -1,20 +1,18 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import NotesContext from './NotesContext'
-import { getNote } from './noteHelpers'
+import { updateNotesBasedOnFolder } from './noteHelpers'
+
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
-
-class NoteDetails extends React.Component {
+class MainPage extends React.Component {
 
   static contextType = NotesContext;
-  static defaultProps ={
-    onDeleteNote: () => {},
-  }
-
+  
   handleClickDelete = e => {
     e.preventDefault()
     const noteId = this.props.match.params.noteId
-
 
 
     fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -40,20 +38,28 @@ class NoteDetails extends React.Component {
   }
 
   render(){
-    const { notes=[] } = this.context;
-    const note = getNote(notes, this.props.match.params.noteId)
-    return (
+    
         
-            <div className="noteDetails">
+      return(
+        <ul>
+            {this.props.newNotes.map(note => {
+              <li key={note.id}>
+              <NavLink to={`/note/${note.id}`}>
                 <h3>{note.name}</h3>
                 <p>Modified: {note.modified.slice(0,10)}</p>
                 <button type="button" className="deletebtn" onClick={this.handleClickDelete}>Delete Note</button>
-                <p>{note.content}</p>
-            </div>
+              </NavLink>
+                
+              </li>
+            })}
+        </ul>
+        
+        
+     )
         
       
-    );
+    
   }
 }
 
-export default NoteDetails;
+export default MainPage;

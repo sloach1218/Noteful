@@ -27,7 +27,7 @@ class MainPage extends React.Component {
         return res.json()
       })
       .then(() => {
-        window.location.href = '/';
+        
         this.context.deleteNote(noteId)
         // allow parent to perform extra behaviour
         //this.props.onDeleteNote(noteId)
@@ -57,7 +57,7 @@ class MainPage extends React.Component {
                         </li>
                      )
                  })}
-                 <li><button className="addbtn">+ Add Note</button></li>
+                 <li><NavLink to='/add-note' className="addbtn">+ Add Note</NavLink></li>
             </ul>
         
       

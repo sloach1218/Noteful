@@ -112,3 +112,14 @@ aside li{
   padding: 10px 26px 10px 16px;
   text-align: center;
 }
+label, input, select{
+  display:block;
+  font-size: 14px;;
+}
+legend{
+  font-size:20px;
+  padding:0;
+}
+form{
+  padding:10px 20px;
+}

@@ -14,7 +14,7 @@ class MainSideBar extends React.Component {
             <div>
               <ul>
                 {folders.map(folder => <li key={folder.id}><NavLink to={`/folder/${folder.id}`} className='folderLink'>{folder.name}</NavLink></li>)}
-                <li className='folderLink'><button className="addbtn">+ Add Folder</button></li>
+                <li className='folderLink'><NavLink className="addbtn" to='/add-folder'>+ Add Folder</NavLink></li>
               </ul>
               
             </div>

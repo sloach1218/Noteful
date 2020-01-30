@@ -5,6 +5,9 @@ import MainSideBar from './MainSideBar';
 import NoteSideBar from './NoteSideBar';
 import NoteDetails from './NoteDetails'; 
 import NotesContext from './NotesContext';
+import AddSideBar from './AddSideBar';
+import AddFolderMain from './AddFolderMain';
+import AddNoteMain from './AddNoteMain';
 
 
 class App extends React.Component {
@@ -31,6 +34,7 @@ class App extends React.Component {
     this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
     });
+  
     
 };
     
@@ -39,6 +43,7 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.handleDeleteNote,
+     
       
     }
     
@@ -53,11 +58,15 @@ class App extends React.Component {
               <Route exact path="/" component={MainSideBar}/> 
               <Route path="/folder/:folderName" component={MainSideBar} />
               <Route path="/note/:noteId" component={NoteSideBar} />
+              <Route path="/add-folder" component={AddSideBar} />
+              <Route path="/add-note" component={AddSideBar} />
             </aside>
             <section>
               <Route exact path="/" component={MainPage}/>
               <Route path="/folder/:folderName" component={MainPage} />
               <Route path="/note/:noteId" component={NoteDetails}/>
+              <Route path="/add-folder" component={AddFolderMain} />
+              <Route path="/add-note" component={AddNoteMain} />
             </section>
           </NotesContext.Provider>
 

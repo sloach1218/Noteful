@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import NotesContext from './NotesContext'
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NotesContext from '../NotesContext'
 
 
 class MainSideBar extends React.Component {

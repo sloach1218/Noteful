@@ -1,11 +1,6 @@
 import React from 'react';
-//import { NavLink } from 'react-router-dom';
-import NotesContext from './NotesContext';
-//import { updateNotesBasedOnFolder } from './noteHelpers'
-import ValidationError from './ValidationError'
-
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import NotesContext from '../NotesContext';
+import ValidationError from '../ValidationError';
 
 class AddFolderMain extends React.Component {
 

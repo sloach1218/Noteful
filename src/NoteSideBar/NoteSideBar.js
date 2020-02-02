@@ -1,6 +1,6 @@
 import React from 'react';
-import NotesContext from './NotesContext'
-import { getFolder } from './noteHelpers'
+import NotesContext from '../NotesContext';
+import { getFolder } from '../noteHelpers';
 
 
 class NoteSideBar extends React.Component {

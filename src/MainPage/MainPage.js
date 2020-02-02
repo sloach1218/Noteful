@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import NotesContext from './NotesContext'
-import { updateNotesBasedOnFolder } from './noteHelpers'
+import NotesContext from '../NotesContext'
+import { updateNotesBasedOnFolder } from '../noteHelpers'
 
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 

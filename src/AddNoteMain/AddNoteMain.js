@@ -1,7 +1,6 @@
 import React from 'react';
-import NotesContext from './NotesContext'
-//import { updateNotesBasedOnFolder } from './noteHelpers'
-import ValidationError from './ValidationError';
+import NotesContext from '../NotesContext'
+import ValidationError from '../ValidationError';
 
 
 
@@ -36,7 +35,7 @@ class AddNoteMain extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { name, content, noteFolder } = this.state;
-    const date = new Date(); //Thu Jan 30 2020 18:45:11 GMT-0600 (Central Standard Time)
+    //const date = new Date(); //Thu Jan 30 2020 18:45:11 GMT-0600 (Central Standard Time)
     const data = {
       "name": name.value,
       "content": content.value,

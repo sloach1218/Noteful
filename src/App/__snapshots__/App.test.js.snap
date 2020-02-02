@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+<main
+  className="App"
+>
+  <header>
+    <h1>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Noteful
+      </a>
+    </h1>
+  </header>
+  <aside>
+    <div>
+      <ul>
+        <li
+          className="folderLink"
+        >
+          <a
+            aria-current={null}
+            className="addbtn"
+            href="/add-folder"
+            onClick={[Function]}
+          >
+            + Add Folder
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <section>
+    <ul>
+      <li>
+        <a
+          aria-current={null}
+          className="addbtn"
+          href="/add-note"
+          onClick={[Function]}
+        >
+          + Add Note
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+`;

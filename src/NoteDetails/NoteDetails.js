@@ -1,6 +1,6 @@
 import React from 'react';
-import NotesContext from './NotesContext'
-import { getNote } from './noteHelpers'
+import NotesContext from '../NotesContext';
+import { getNote } from '../noteHelpers';
 
 
 
@@ -31,8 +31,6 @@ class NoteDetails extends React.Component {
       .then(() => {
         window.location.href = '/';
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
-        //this.props.onDeleteNote(noteId)
       })
       .catch(error => {
         console.error({ error })

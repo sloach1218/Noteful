@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <legend>
+    Create a note
+  </legend>
+  <label
+    htmlFor="name"
+  >
+    Note Name:
+  </label>
+  <input
+    id="name"
+    name="name"
+    onChange={[Function]}
+    type="text"
+  />
+  <label
+    htmlFor="content"
+  >
+    Content:
+  </label>
+  <textarea
+    id="content"
+    name="content"
+    onChange={[Function]}
+    type="text"
+  />
+  <label
+    htmlFor="folders"
+  >
+    Select a Folder:
+  </label>
+  <select
+    name="folders"
+    onChange={[Function]}
+    value="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+  />
+  <button
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import MainPage from './MainPage';
-import MainSideBar from './MainSideBar';
-import NoteSideBar from './NoteSideBar';
-import NoteDetails from './NoteDetails'; 
-import NotesContext from './NotesContext';
-import AddSideBar from './AddSideBar';
-import AddFolderMain from './AddFolderMain';
-import AddNoteMain from './AddNoteMain';
+import MainPage from '../MainPage/MainPage';
+import MainSideBar from '../MainSideBar/MainSideBar';
+import NoteSideBar from '../NoteSideBar/NoteSideBar';
+import NoteDetails from '../NoteDetails/NoteDetails'; 
+import NotesContext from '../NotesContext';
+import AddSideBar from '../AddSideBar/AddSideBar';
+import AddFolderMain from '../AddFolderMain/AddFolderMain';
+import AddNoteMain from '../AddNoteMain/AddNoteMain';
 
 
 class App extends React.Component {
@@ -16,7 +16,6 @@ class App extends React.Component {
       notes: [],
       folders: []
     };
-  
 
   componentDidMount() {
     fetch('http://localhost:9090/folders')
@@ -34,9 +33,7 @@ class App extends React.Component {
     this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
     });
-  
-    
-};
+  };
     
   render(){
     const contextValue = {

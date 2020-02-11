@@ -29,10 +29,12 @@ class AddFolderMain extends React.Component {
         'content-type': 'application/json'
       },
       body: JSON.stringify(data),
-    })
-    .then(() => {
-      window.location.href = '/';
-    })
+      })
+      .then(() => {
+        window.location.href = '/';
+      }).catch((err) => {
+        alert(`Something went wrong: ` + err + ` Please try again later.`);
+      });
     
   }
 

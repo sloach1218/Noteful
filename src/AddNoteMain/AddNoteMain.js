@@ -52,7 +52,9 @@ class AddNoteMain extends React.Component {
     })
     .then(() => {
       window.location.href = '/';
-    })
+    }).catch((err) => {
+      alert(`Something went wrong: ` + err + ` Please try again later.`);
+    });
     
   }
   validateName() {

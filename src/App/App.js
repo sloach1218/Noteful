@@ -8,6 +8,7 @@ import NotesContext from '../NotesContext';
 import AddSideBar from '../AddSideBar/AddSideBar';
 import AddFolderMain from '../AddFolderMain/AddFolderMain';
 import AddNoteMain from '../AddNoteMain/AddNoteMain';
+import ErrorBoundary from '../ErrorBoundary';
 
 
 class App extends React.Component {
@@ -18,17 +19,18 @@ class App extends React.Component {
     };
 
   componentDidMount() {
-    fetch('http://localhost:9090/folders')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({folders:data});
-      });
-      fetch('http://localhost:9090/notes')
-      .then(notesresponse => notesresponse.json())
-      .then(notesdata => {
-        this.setState({notes:notesdata});
-      });
+    Promise.all([
+      fetch('http://localhost:9090/folders').then(response => response.json()),
+      fetch('http://localhost:9090/notes').then(response => response.json())
+    ]).then(([folders, notes]) => {
+      this.setState({folders:folders, notes:notes});
+    }).catch((err) => {
+        console.error(err);
+    });
+    
+      
   }
+
   handleDeleteNote = noteId => {
     this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
@@ -39,9 +41,7 @@ class App extends React.Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.handleDeleteNote,
-     
-      
+      deleteNote: this.handleDeleteNote
     }
     
     return (
@@ -52,18 +52,22 @@ class App extends React.Component {
           </header>
           <NotesContext.Provider value={contextValue}>
             <aside>
-              <Route exact path="/" component={MainSideBar}/> 
-              <Route path="/folder/:folderName" component={MainSideBar} />
-              <Route path="/note/:noteId" component={NoteSideBar} />
-              <Route path="/add-folder" component={AddSideBar} />
-              <Route path="/add-note" component={AddSideBar} />
+              <ErrorBoundary>
+                <Route exact path="/" component={MainSideBar}/> 
+                <Route path="/folder/:folderName" component={MainSideBar} />
+                <Route path="/note/:noteId" component={NoteSideBar} />
+                <Route path="/add-folder" component={AddSideBar} />
+                <Route path="/add-note" component={AddSideBar} />
+              </ErrorBoundary>
             </aside>
             <section>
-              <Route exact path="/" component={MainPage}/>
-              <Route path="/folder/:folderName" component={MainPage} />
-              <Route path="/note/:noteId" component={NoteDetails}/>
-              <Route path="/add-folder" component={AddFolderMain} />
-              <Route path="/add-note" component={AddNoteMain} />
+              <ErrorBoundary>
+                <Route exact path="/" component={MainPage}/>
+                <Route path="/folder/:folderName" component={MainPage} />
+                <Route path="/note/:noteId" component={NoteDetails}/>
+                <Route path="/add-folder" component={AddFolderMain} />
+                <Route path="/add-note" component={AddNoteMain} />
+              </ErrorBoundary>
             </section>
           </NotesContext.Provider>
 

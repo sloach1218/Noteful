@@ -69,9 +69,9 @@ class AddNoteMain extends React.Component {
   validateContent() {
     const name = this.state.content.value.trim();
     if (name.length === 0) {
-      return "Name is required";
+      return "Content is required";
     } else if (name.length < 5) {
-      return "Name must be at least 5 characters long";
+      return "Content must be at least 5 characters long";
     }
   }
   
@@ -96,7 +96,7 @@ class AddNoteMain extends React.Component {
           ))}
           
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={this.validateName() || this.validateContent()}  >Submit</button>
       </form>
     );
   }

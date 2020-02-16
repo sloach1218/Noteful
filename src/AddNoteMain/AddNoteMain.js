@@ -84,10 +84,22 @@ class AddNoteMain extends React.Component {
       <form onSubmit={e => this.handleSubmit(e)}>
         <legend>Create a note</legend>
         <label htmlFor="name">Note Name:</label>
-        <input type="text" name="name" id="name" onChange={e => this.updateName(e.target.value)}></input>
+        <input 
+          type="text" 
+          name="name" 
+          id="name" 
+          onChange={e => this.updateName(e.target.value)}
+          aria-label="New note name"
+          aria-required="true"></input>
         {this.state.name.touched && (<ValidationError message={this.validateName()} />)}
         <label htmlFor="content">Content:</label>
-        <textarea type="text" name="content" id="content" onChange={e => this.updateContent(e.target.value)}></textarea>
+        <textarea 
+          type="text"
+          name="content"
+          id="content"
+          onChange={e => this.updateContent(e.target.value)}
+          aria-label="New note content"
+          aria-required="true"></textarea>
         {this.state.content.touched && (<ValidationError message={this.validateContent()} />)}
         <label htmlFor="folders">Select a Folder:</label>
         <select name="folders" value={this.state.noteFolder.value} onChange={e => this.updateFolder(e.target.value)}>

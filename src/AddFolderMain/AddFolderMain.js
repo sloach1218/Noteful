@@ -55,7 +55,13 @@ class AddFolderMain extends React.Component {
       <form onSubmit={e => this.handleSubmit(e)}>
         <legend>Create a folder</legend>
         <label htmlFor="name">Folder Name:</label>
-        <input type="text" name="name" id="name" onChange={e => this.updateName(e.target.value)}></input>
+        <input 
+          type="text" 
+          name="name" 
+          id="name" 
+          onChange={e => this.updateName(e.target.value)}
+          aria-label="New folder name"
+          aria-required="true"></input>
         {this.state.name.touched && (<ValidationError message={this.validateName()} />)}
         <button type="submit" disabled={ this.validateName() }>Submit</button>
       </form>

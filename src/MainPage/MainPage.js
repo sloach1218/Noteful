@@ -15,7 +15,7 @@ class MainPage extends React.Component {
     const noteId = e.target.getAttribute('note')
     
 
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:8000/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -27,10 +27,9 @@ class MainPage extends React.Component {
         return res.json()
       })
       .then(() => {
-        
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
-        //this.props.onDeleteNote(noteId)
+        
+        
       })
       .catch(error => {
         console.error({ error })

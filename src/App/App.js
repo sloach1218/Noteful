@@ -9,6 +9,7 @@ import AddSideBar from '../AddSideBar/AddSideBar';
 import AddFolderMain from '../AddFolderMain/AddFolderMain';
 import AddNoteMain from '../AddNoteMain/AddNoteMain';
 import ErrorBoundary from '../ErrorBoundary';
+import config from '../config';
 
 
 class App extends React.Component {
@@ -20,8 +21,18 @@ class App extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      fetch('http://localhost:9090/folders').then(response => response.json()),
-      fetch('http://localhost:9090/notes').then(response => response.json())
+      fetch(config.API_FOLDERS_ENDPOINT, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        }
+      }).then(response => response.json()),
+      fetch(config.API_NOTES_ENDPOINT, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        }
+      }).then(response => response.json())
     ]).then(([folders, notes]) => {
       this.setState({folders:folders, notes:notes});
     }).catch((err) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesContext from '../NotesContext'
 import ValidationError from '../ValidationError';
+import config from '../config';
 
 
 
@@ -43,7 +44,7 @@ class AddNoteMain extends React.Component {
       "folderId": noteFolder.value,
     }
 
-    fetch('http://localhost:9090/notes', {
+    fetch(config.API_NOTES_ENDPOINT, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

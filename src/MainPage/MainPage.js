@@ -15,20 +15,21 @@ class MainPage extends React.Component {
     const noteId = e.target.getAttribute('note')
     
 
-    fetch(`http://localhost:8000/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       }
     })
       .then(res => {
-        if (!res.ok)
+        if (!res.ok){
           return res.json().then(e => Promise.reject(e))
-        return res.json()
+        }
+        return
       })
       .then(() => {
+        window.location.href = '/';
         this.context.deleteNote(noteId)
-        
         
       })
       .catch(error => {

@@ -20,7 +20,7 @@ class AddNoteMain extends React.Component {
         touched: false
       },
       noteFolder: {
-        value: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
+        value: "1",
       },
     };
   }
@@ -41,7 +41,7 @@ class AddNoteMain extends React.Component {
       "name": name.value,
       "content": content.value,
       "modified": "2019-01-03T00:00:00.000Z",
-      "folderId": noteFolder.value,
+      "folder_id": noteFolder.value,
     }
 
     fetch(config.API_NOTES_ENDPOINT, {

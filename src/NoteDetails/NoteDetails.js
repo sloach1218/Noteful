@@ -17,14 +17,13 @@ class NoteDetails extends React.Component {
     
 
 
-    fetch(`http://localhost:8000/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       }
     })
       .then(res => {
-        //console.log(res.json());
         
         if (!res.ok){
           return res.json().then(e => Promise.reject(e))

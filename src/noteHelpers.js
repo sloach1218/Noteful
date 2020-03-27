@@ -2,7 +2,7 @@ export const updateNotesBasedOnFolder = (notes, folderId) => {
     
   if(typeof folderId !== 'undefined'){
       
-      const newnotes = notes.filter(note => Number(note.folderId) === Number(folderId))
+      const newnotes = notes.filter(note => Number(note.folder_id) === Number(folderId))
       return newnotes;
     } else{
       return notes;
@@ -17,7 +17,7 @@ export const getNote = (notes, noteId) => {
 
 export const getFolder = (notes, folders, noteId) => {
     const theNote = notes.find(notes => Number(notes.id) === Number(noteId))
-    const theFolder = folders.find(folder => Number(folder.id) === Number(theNote.folderId))
+    const theFolder = folders.find(folder => Number(folder.id) === Number(theNote.folder_id))
 
     return theFolder;
   }

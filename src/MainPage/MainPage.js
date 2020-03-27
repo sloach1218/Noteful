@@ -15,7 +15,7 @@ class MainPage extends React.Component {
     const noteId = e.target.getAttribute('note')
     
 
-    fetch(`http://localhost:8000/api/notes/${noteId}`, {
+    fetch(`https://guarded-wildwood-03458.herokuapp.com/api/notes${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'

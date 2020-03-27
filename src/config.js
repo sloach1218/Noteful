@@ -1,4 +1,4 @@
 export default {
-    API_NOTES_ENDPOINT: `http://localhost:8000/api/notes`,
-    API_FOLDERS_ENDPOINT: `http://localhost:8000/api/folders`,
+    API_NOTES_ENDPOINT: `https://guarded-wildwood-03458.herokuapp.com/api/notes`,
+    API_FOLDERS_ENDPOINT: `https://guarded-wildwood-03458.herokuapp.com/api/folders`,
 }

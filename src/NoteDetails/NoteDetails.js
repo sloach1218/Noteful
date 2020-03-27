@@ -17,7 +17,7 @@ class NoteDetails extends React.Component {
     
 
 
-    fetch(`https://guarded-wildwood-03458.herokuapp.com/api/notes${noteId}`, {
+    fetch(`https://guarded-wildwood-03458.herokuapp.com/api/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
